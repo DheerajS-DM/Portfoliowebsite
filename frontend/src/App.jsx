@@ -6,7 +6,7 @@ const projects = [
     name: "StableCoin-Risk-Analyzer", 
     description: "Autonomous risk engine designed for DeFi stablecoin analysis and vulnerability detection.", 
     github: "https://github.com/DheerajS-DM/stablecoin-risk-analyzer", 
-    live: "https://stable-risk-demo.vercel.app",
+    live: "https://hackathons-chi.vercel.app/",
     underConstruction: false,
     noLive: false // Has a frontend
   },
@@ -21,7 +21,7 @@ const projects = [
     name: "Stock Value Analyzer", 
     description: "Full-stack quantitative analysis application for tracking stock trends and valuations.", 
     github: "https://github.com/DheerajS-DM/stock-analyzer-project", 
-    live: "https://stock-val-analyzer.vercel.app", 
+    live: "https://stock-analyzer-project-2vy6ychy1-dheerajs-dms-projects.vercel.app/", 
     underConstruction: false,
     noLive: false
   },
@@ -35,7 +35,7 @@ const projects = [
   { 
     name: "OrbitLens", 
     description: "Geospatial data web application demonstrating robust full-stack API integrations. Currently on static data working on live apis", 
-    github: "https://github.com/DheerajS-DM/", 
+    github: "https://github.com/DheerajS-DM/Orbit-Lens", 
     underConstruction: true,
     noLive: false 
   },
@@ -49,7 +49,7 @@ const projects = [
   {
     name: "Personal Portfolio Website",
     description: "This very website. Built with React and CSS, showcasing my projects and skills in a sleek, modern design.",
-    github: "",
+    github: "https://github.com/DheerajS-DM/Portfoliowebsite",
     live: "#",
     underConstruction: true,
     nolive: false,
@@ -57,7 +57,7 @@ const projects = [
   {
     name: "Data Visualisation Dashboard",
     description:"Dashboard that has parsed through a json data file with 1 thousand records , using python and concurrency to supabase then displayed on a react frontend",
-    github: "",
+    github: "https://github.com/DheerajS-DM/visualisation-dashboard-inprogress-",
     live: "#",
     underConstruction: true,
     nolive: false,
