@@ -163,42 +163,83 @@ export default function Tetris() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [player, stage, gameOver]);
 
-  return (
-    <div className="min-w-[300px] w-full h-full flex flex-col items-center justify-center p-6 bg-gradient-to-b from-slate-900 to-slate-950">
-      <div className="flex items-center justify-between w-full max-w-[280px] mb-4">
-        <h3 className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400 tracking-widest uppercase">Arcade</h3>
+return (
+    <div className="min-w-[300px] w-full h-full flex flex-col items-center justify-center p-6 bg-[#020617] select-none">
+      
+      {/* HEADER */}
+      <div className="flex items-center justify-between w-full max-w-[260px] mb-6">
+        <div className="flex flex-col">
+          <h3 className="text-lg font-black text-white tracking-widest uppercase italic leading-none">
+            Tetris
+          </h3>
+          <span className="text-[16px] text-indigo-500 font-mono tracking-[0.3em] mt-1">feels fun</span>
+        </div>
         <div className="text-right">
-          <p className="text-[10px] text-slate-500 font-bold uppercase tracking-tighter">Score</p>
-          <p className="text-xl text-slate-200 font-mono leading-none">{score.toString().padStart(5, '0')}</p>
+          <p className="text-[9px] text-slate-500 font-bold uppercase tracking-widest mb-1">Total_Score</p>
+          <p className="text-2xl text-indigo-400 font-mono leading-none font-black drop-shadow-[0_0_8px_rgba(129,140,248,0.4)]">
+            {score.toString().padStart(5, '0')}
+          </p>
         </div>
       </div>
       
-      <div className="w-full max-w-[260px] aspect-[1/2] bg-slate-900 border-4 border-slate-800 rounded-lg shadow-2xl relative overflow-hidden group">
-        <div className="z-10 w-full h-full bg-slate-950 p-[1px]">
-          <div className="w-full h-full grid grid-rows-[repeat(20,1fr)] grid-cols-[repeat(10,1fr)] gap-[1px] bg-slate-800">
-            {stage.map((row, y) => 
-              row.map((cell, x) => (
-                <div key={`${y}-${x}`} className={`w-full h-full rounded-sm transition-colors duration-100 ${TETROMINOS[cell[0]]?.color || 'bg-slate-950'}`} />
-              ))
-            )}
-          </div>
+      {/* GAME VIEWPORT */}
+      <div className="relative w-full max-w-[260px] aspect-[1/2] bg-black border-[4px] border-slate-900 rounded-sm shadow-[0_0_40px_rgba(0,0,0,0.5)] overflow-hidden">
+        
+        {/* THE GRID */}
+        <div className="absolute inset-0 grid grid-cols-10 grid-rows-[repeat(20,1fr)]">
+          {stage.map((row, y) => 
+            row.map((cell, x) => (
+              <div 
+                key={`${y}-${x}`} 
+                className={`
+                  w-full h-full border-[0.5px] border-slate-800/40 transition-colors duration-100
+                  ${TETROMINOS[cell[0]]?.color || 'bg-transparent'}
+                  ${cell[0] !== 0 ? 'shadow-[inset_0_0_12px_rgba(255,255,255,0.1)]' : ''}
+                `} 
+              />
+            ))
+          )}
         </div>
         
+        {/* CRT SCANLINE OVERLAY */}
+        <div className="absolute inset-0 pointer-events-none opacity-[0.03] bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%)] bg-[size:100%_4px]" />
+
+        {/* MENUS */}
         {(!dropTime || gameOver) && (
-          <div className="absolute inset-0 z-20 w-full h-full flex items-center justify-center bg-black/70 backdrop-blur-md">
-            <div className="text-center p-8">
-              {gameOver && <p className="text-red-500 font-black text-2xl mb-6 drop-shadow-lg">CRASHED</p>}
-              <button onClick={startGame} className="bg-indigo-600 hover:bg-indigo-500 text-white font-black py-3 px-8 rounded-full shadow-xl shadow-indigo-500/40 transition-all active:scale-90 scale-110">
-                {gameOver ? "REBOOT" : "BOOT UP"}
+          <div className="absolute inset-0 z-30 flex items-center justify-center bg-slate-950/90 backdrop-blur-md">
+            <div className="text-center p-6">
+              {gameOver && (
+                <div className="mb-8">
+                  <p className="text-red-500 font-black text-3xl tracking-tighter italic">OVERFLOW</p>
+                  <div className="h-1 w-full bg-red-950 mt-2 overflow-hidden">
+                    <div className="h-full bg-red-500 animate-[progress_2s_ease-in-out_infinite]" style={{width: '60%'}} />
+                  </div>
+                </div>
+              )}
+              <button 
+                onClick={startGame} 
+                className="relative group bg-indigo-600 hover:bg-indigo-500 text-white font-black py-4 px-10 rounded-sm transition-all active:scale-95 shadow-[0_0_20px_rgba(79,70,229,0.4)]"
+              >
+                <span className="relative z-10 tracking-[0.2em] uppercase italic text-sm">
+                  {gameOver ? "Restart_Core" : "Initialize"}
+                </span>
+                <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity" />
               </button>
             </div>
           </div>
         )}
       </div>
 
-      <div className="mt-8 flex gap-4 text-[10px] font-mono text-slate-600">
-        <span>&larr; &rarr; MOVE</span>
-        <span>&uarr; ROTATE</span>
+      {/* CONTROLS HINT */}
+      <div className="mt-8 flex flex-col items-center gap-3">
+        <div className="flex gap-3">
+          {['↑', '←', '↓', '→'].map(key => (
+            <div key={key} className="w-8 h-8 flex items-center justify-center border border-slate-800 rounded text-slate-500 font-bold text-xs bg-slate-900/50">
+              {key}
+            </div>
+          ))}
+        </div>
+        <p className="text-[9px] font-mono text-slate-600 uppercase tracking-widest font-bold">Manual_Override_Active</p>
       </div>
     </div>
   );
