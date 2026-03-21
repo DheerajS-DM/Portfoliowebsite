@@ -16,24 +16,29 @@ Backend-First Design: Optimized project cards designed to highlight core logic, 
 
 Glassmorphism UI: Modern, dark-mode aesthetic with animated mesh gradients and backdrop blurs.
 
-🛠️ Installation & Setup
+Installation & Setup
 Clone the repository:
 
 Bash
+```
 git clone https://github.com/DheerajS-DM/portfolio.git
 Install dependencies:
-
+```
 Bash
+```
 npm install
+```
 Run locally:
-
 Bash
+```
 npm run dev
+```
 Build for production:
-
 Bash
+```
 npm run build
-📂 Project Structure
+```
+Project Structure
 src/App.jsx - Main layout and project data.
 
 src/tetris.jsx - The core game logic and rendering engine.
