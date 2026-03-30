@@ -61,6 +61,14 @@ const projects = [
     live: "#",
     underConstruction: true,
     nolive: false,
+  },
+  {
+    name: "GPU Visualizer",
+    description: " NVIDIA GPU telemetry using Python and NVIDIA’s Management Library (NVML). The dashboard provides live monitoring of GPU metrics – such as utilization, clock  speed, temperature, power draw, and active compute processes – via a graphical interface built with Tkinter. ",
+    github: "https://github.com/DheerajS-DM/GPU_analyzer",
+    live: "#",
+    underConstruction: false,
+    noLive: true
   }
 ];
 
