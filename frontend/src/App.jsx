@@ -3,70 +3,51 @@ import Tetris from './tetris.jsx';
 
 const projects = [
   { 
-    name: "StableCoin-Risk-Analyzer", 
-    description: "Autonomous risk engine designed for DeFi stablecoin analysis and vulnerability detection.", 
-    github: "https://github.com/DheerajS-DM/stablecoin-risk-analyzer", 
-    live: "https://hackathons-chi.vercel.app/",
+    name: "BrainQuant Generator", 
+    description: "High-performance local alpha formula generation, AST native compilation to Polars, and continuous backtesting pipeline.", 
+    github: "https://github.com/DheerajS-DM/alpha-generator", 
+    tags: ["Python", "Polars", "Quant", "AST"],
     underConstruction: false,
-    noLive: false // Has a frontend
+    noLive: true
   },
   { 
-    name: "Assertion-Proof-Verification", 
-    description: "Mathematical proof verification engine. Patent filed via VIT IPR portal.", 
-    github: "https://github.com/DheerajS-DM/", 
-    underConstruction: true,
-    noLive: false
+    name: "Game Latency Router & Edge Arena", 
+    description: "Multi-cloud machine-learning-based latency routing framework (AWS, GCP, Azure) and 2D arena game server with live telemetry.", 
+    github: "https://github.com/DheerajS-DM", 
+    tags: ["Node.js", "FastAPI", "Scikit-Learn", "Multi-Cloud"],
+    underConstruction: false,
+    noLive: true
   },
   { 
     name: "Stock Value Analyzer", 
-    description: "Full-stack quantitative analysis application for tracking stock trends and valuations.", 
+    description: "Production-grade full-stack quantitative stock valuation platform utilizing a custom exponential decay algorithm.", 
     github: "https://github.com/DheerajS-DM/stock-analyzer-project", 
-    live: "https://stock-analyzer-project-2vy6ychy1-dheerajs-dms-projects.vercel.app/", 
+    live: "https://stock-analyzer-project-po4e2s65z-dheerajs-dms-projects.vercel.app/", 
+    tags: ["FastAPI", "React", "Supabase", "yfinance"],
     underConstruction: false,
     noLive: false
   },
   { 
-    name: "Node and Edge Bridge Analysis", 
-    description: "Technical analysis of bridge structures using node and edge detection algorithms.", 
-    github: "https://github.com/DheerajS-DM/Node_and_Edge_detection-Bridge_Analysis", 
+    name: "DaVinci AI Orchestrator", 
+    description: "Multi-agent video editing orchestration pipeline for automated timeline assembly in DaVinci Resolve Studio.", 
+    github: "https://github.com/DheerajS-DM", 
+    tags: ["Python", "Node.js", "Blender API", "DaVinci API"],
     underConstruction: false,
-    noLive: true // CLI/Analysis tool
+    noLive: true
   },
   { 
-    name: "OrbitLens", 
-    description: "Geospatial data web application demonstrating robust full-stack API integrations. Currently on static data working on live apis", 
-    github: "https://github.com/DheerajS-DM/Orbit-Lens", 
-    underConstruction: true,
-    noLive: false 
-  },
-  { 
-    name: "IRCTC Schedule Analyzer", 
-    description: "Python Script with a Tkinter GUI analyzes using t-testing and ANOVA working on future AI implementation.", 
-    github: "https://github.com/DheerajS-DM/IRCTC-Schedule-analyzer-inProgress-", 
-    underConstruction: true,
-    noLive: false 
-  },
-  {
-    name: "Personal Portfolio Website",
-    description: "This very website. Built with React and CSS, showcasing my projects and skills in a sleek, modern design.",
-    github: "https://github.com/DheerajS-DM/Portfoliowebsite",
-    live: "#",
-    underConstruction: true,
-    nolive: false,
-  },
-  {
-    name: "Data Visualisation Dashboard",
-    description:"Dashboard that has parsed through a json data file with 1 thousand records , using python and concurrency to supabase then displayed on a react frontend",
-    github: "https://github.com/DheerajS-DM/visualisation-dashboard-inprogress-",
-    live: "#",
-    underConstruction: true,
-    nolive: false,
+    name: "Data Analytics Dashboard", 
+    description: "High-density data visualization dashboard featuring multi-dimensional filtering and cloud-to-local fail-safe architecture.", 
+    github: "https://github.com/DheerajS-DM/visualisation-dashboard-inprogress-", 
+    tags: ["React", "FastAPI", "Supabase", "Vite"],
+    underConstruction: false,
+    noLive: true
   },
   {
     name: "GPU Visualizer",
-    description: " NVIDIA GPU telemetry using Python and NVIDIA’s Management Library (NVML). The dashboard provides live monitoring of GPU metrics – such as utilization, clock  speed, temperature, power draw, and active compute processes – via a graphical interface built with Tkinter. ",
+    description: "Real-time NVIDIA GPU telemetry and performance monitor built using Python and NVML.",
     github: "https://github.com/DheerajS-DM/GPU_analyzer",
-    live: "#",
+    tags: ["Python", "NVML", "Tkinter"],
     underConstruction: false,
     noLive: true
   }
@@ -91,92 +72,89 @@ export default function Portfolio() {
         }`}
       >
         {/* HEADER SECTION */}
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-10 gap-6 relative z-10">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-12 gap-6 relative z-10">
           <div>
-            <h1 className="text-5xl sm:text-7xl font-black text-white tracking-tighter mb-2 bg-clip-text text-transparent bg-gradient-to-br from-white via-white to-slate-500">
-              DHEERAJ SUTRAM
+            <h1 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight mb-2 bg-gradient-to-r from-cyan-400 via-indigo-400 to-emerald-400 bg-clip-text text-transparent">
+              Dheeraj Sutram
             </h1>
-            <p className="text-indigo-400 font-mono text-white text-sm tracking-widest uppercase font-bold">
-            Contact me @ dheeraj22may@gmail.com | 9360229114
+            <p className="text-cyan-400 font-mono text-xs sm:text-sm tracking-wider uppercase font-semibold">
+              dheeraj22may@gmail.com | +91 9360229114
             </p>
           </div>
           
           <button 
-            className="group relative bg-slate-900 border border-slate-800 px-6 py-3 rounded-full font-bold text-sm transition-all hover:border-indigo-500 hover:shadow-[0_0_20px_rgba(79,70,229,0.3)] flex items-center gap-3 overflow-hidden"
+            className="group relative bg-slate-900 border border-cyan-500/40 hover:border-cyan-400 px-5 py-2.5 rounded-lg text-xs font-mono font-bold transition-all shadow-[0_0_15px_rgba(6,182,212,0.15)] hover:shadow-[0_0_20px_rgba(6,182,212,0.35)] flex items-center gap-2.5"
             onClick={() => setIsTetrisOpen(!isTetrisOpen)}
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-emerald-600 opacity-0 group-hover:opacity-10 transition-opacity" />
-            <span className="relative">{isTetrisOpen ? "TERMINATE ARCADE" : "INITIALIZE TETRIS"}</span>
-            <div className={`w-2 h-2 rounded-full ${isTetrisOpen ? 'bg-red-500 animate-pulse' : 'bg-emerald-500'}`} />
+            <span className="text-cyan-300 font-bold">{isTetrisOpen ? "Close Arcade" : "Play Tetris"}</span>
+            <div className={`w-2.5 h-2.5 rounded-full ${isTetrisOpen ? 'bg-rose-500 animate-pulse' : 'bg-emerald-400'}`} />
           </button>
         </div>
 
-        {/* BIO SECTION (TERMINAL STYLE) */}
-        <div className="max-w-3xl mb-16 relative z-10">
-          <div className="bg-slate-900/60 backdrop-blur-xl border border-slate-800 rounded-xl overflow-hidden shadow-2xl">
-            <div className="bg-slate-800/50 px-4 py-2 flex items-center gap-2 border-b border-slate-800">
-              <div className="flex gap-1.5">
-                <div className="w-2.5 h-2.5 rounded-full bg-red-500/50" />
-                <div className="w-2.5 h-2.5 rounded-full bg-amber-500/50" />
-                <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/50" />
+        {/* BIO SECTION (TERMINAL STYLE WITH VIBRANT ACCENTS) */}
+        <div className="max-w-3xl mb-14 relative z-10">
+          <div className="bg-slate-900/80 border border-slate-800 rounded-xl overflow-hidden shadow-[0_0_30px_rgba(0,0,0,0.5)]">
+            <div className="bg-slate-950 px-4 py-2.5 flex items-center justify-between border-b border-slate-800">
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full bg-rose-500/80" />
+                <div className="w-3 h-3 rounded-full bg-amber-500/80" />
+                <div className="w-3 h-3 rounded-full bg-emerald-500/80" />
+                <span className="text-[11px] font-mono text-cyan-400 tracking-wider ml-2 font-bold">about.sh</span>
               </div>
-              <span className="text-[10px] font-mono text-slate-500 uppercase tracking-widest ml-2">bio.sh</span>
+              <span className="text-[10px] font-mono text-slate-500">profile_v2.0</span>
             </div>
-            <div className="p-6 font-mono text-sm sm:text-base leading-relaxed">
-              <p className="text-emerald-400 mb-2 font-bold tracking-tight">
-                <span className="text-slate-500">➜</span> ~ <span className="text-white italic">"Currently trying and learning software to find my niche"</span>
+            <div className="p-6 font-mono text-xs sm:text-sm leading-relaxed">
+              <p className="text-emerald-400 mb-4 font-semibold">
+                <span className="text-cyan-400">➜</span> <span className="text-slate-400">~</span> <span className="text-slate-200">Software Engineer specializing in quantitative algorithms, backtest systems, and distributed backend pipelines.</span>
               </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-y-2 gap-x-8 mt-4 text-slate-300">
-                <p><span className="text-indigo-400 font-bold">EDUCATION:</span> BE Information Technology @ VIT</p>
-                <p><span className="text-indigo-400 font-bold">CLASS:</span> 2028 Graduate</p>
-                <p><span className="text-indigo-400 font-bold">FOCUS:</span> Mathematical Analysis and prediction with scope of AI</p>
-                <p><span className="text-indigo-400 font-bold">STATUS:</span> Seeking 2026 Summer Internships</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-y-2.5 gap-x-8 text-xs border-t border-slate-800/80 pt-4">
+                <p><span className="text-cyan-400 font-bold">EDUCATION:</span> <span className="text-slate-200">BE IT @ VIT (2028)</span></p>
+                <p><span className="text-purple-400 font-bold">FOCUS:</span> <span className="text-slate-200">Quant Systems & ML</span></p>
+                <p><span className="text-emerald-400 font-bold">STATUS:</span> <span className="text-slate-200">Building & Exploring High-Performance Systems</span></p>
               </div>
             </div>
           </div>
         </div>
 
         {/* PROJECTS GRID */}
-        <h3 className="text-xs font-black text-slate-500 uppercase tracking-[0.3em] mb-8 relative z-10 pl-1 border-l-2 border-indigo-500/50">
-          Projects
+        <h3 className="text-xs font-mono text-cyan-400 uppercase tracking-widest mb-6 relative z-10 font-bold flex items-center gap-2">
+          <span className="text-emerald-400">//</span> Selected Projects
         </h3>
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 relative z-10 pb-20">
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 relative z-10 pb-20">
           {projects.map((proj, idx) => (
             <div 
               key={idx} 
-              className="group relative bg-slate-900/40 backdrop-blur-md p-8 rounded-2xl border border-slate-800/50 hover:border-indigo-500/50 transition-all duration-500 flex flex-col justify-between overflow-hidden animate-float"
-              style={{ animationDelay: `${idx * 0.5}s` }}
+              className="group bg-slate-900/60 p-6 rounded-xl border border-slate-800 hover:border-cyan-500/50 transition-all duration-300 flex flex-col justify-between hover:shadow-[0_0_25px_rgba(6,182,212,0.12)] relative overflow-hidden"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              
-              <div className="relative z-10">
-                <div className="flex gap-2 mb-4">
+              <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-cyan-500 via-indigo-500 to-emerald-500 opacity-80 group-hover:opacity-100 transition-opacity" />
+              <div className="pl-2">
+                <div className="flex flex-wrap gap-1.5 mb-3">
                   {proj.tags?.map(tag => (
-                    <span key={tag} className="text-[10px] font-mono text-indigo-400/80 border border-indigo-500/20 px-2 py-0.5 rounded-md uppercase tracking-widest">
+                    <span key={tag} className="text-[10px] font-mono font-bold text-cyan-300 bg-cyan-950/60 border border-cyan-500/30 px-2 py-0.5 rounded uppercase tracking-wider">
                       {tag}
                     </span>
                   ))}
                 </div>
-                <h2 className="text-2xl font-bold mb-3 text-white group-hover:text-indigo-300 transition-colors">
+                <h2 className="text-xl font-bold mb-2 text-white group-hover:text-cyan-300 transition-colors">
                   {proj.name}
                 </h2>
-                <p className="text-slate-400 mb-8 text-sm leading-relaxed font-medium">
+                <p className="text-slate-300 text-xs leading-relaxed mb-6 font-normal">
                   {proj.description}
                 </p>
               </div>
               
-              <div className="flex flex-wrap items-center gap-6 relative z-10 border-t border-slate-800/50 pt-6">
-                <a href={proj.github} target="_blank" rel="noreferrer" className="text-white text-xs font-black uppercase tracking-widest hover:text-indigo-400 transition-colors flex items-center gap-2">
-                  Source <span className="text-indigo-500 text-lg">/</span>
+              <div className="flex items-center gap-4 border-t border-slate-800/80 pt-4 text-xs font-mono pl-2">
+                <a href={proj.github} target="_blank" rel="noreferrer" className="text-cyan-400 hover:text-cyan-300 font-bold transition-colors">
+                  Source Code →
                 </a>
-                {!proj.noLive && !proj.underConstruction && (
-                  <a href={proj.live} target="_blank" rel="noreferrer" className="group/btn text-emerald-400 text-xs font-black uppercase tracking-widest flex items-center gap-2 hover:text-emerald-300 transition-colors">
-                    Live Demo <span className="transform group-hover/btn:translate-x-1 transition-transform">→</span>
+                {!proj.noLive && (
+                  <a href={proj.live} target="_blank" rel="noreferrer" className="text-emerald-400 hover:text-emerald-300 font-bold transition-colors">
+                    Live Demo →
                   </a>
                 )}
-                {(proj.noLive || proj.underConstruction) && (
-                  <span className="text-[10px] font-black text-slate-600 tracking-tighter uppercase italic">
-                    {proj.underConstruction ? "// System Offline" : "// Core Logic Only"}
+                {proj.noLive && (
+                  <span className="text-slate-500 text-[11px] font-medium">
+                    // Core Logic Engine
                   </span>
                 )}
               </div>

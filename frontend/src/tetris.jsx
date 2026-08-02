@@ -230,16 +230,36 @@ return (
         )}
       </div>
 
-      {/* CONTROLS HINT */}
-      <div className="mt-8 flex flex-col items-center gap-3">
-        <div className="flex gap-3">
-          {['↑', '←', '↓', '→'].map(key => (
-            <div key={key} className="w-8 h-8 flex items-center justify-center border border-slate-800 rounded text-slate-500 font-bold text-xs bg-slate-900/50">
-              {key}
-            </div>
-          ))}
+      {/* CONTROLS & MOBILE D-PAD */}
+      <div className="mt-6 flex flex-col items-center gap-3 w-full max-w-[260px]">
+        {/* On-Screen Touch Controls */}
+        <div className="grid grid-cols-3 gap-2 w-full">
+          <button 
+            onClick={() => { if (!gameOver) playerRotate(stage); }}
+            className="col-span-3 bg-slate-900/80 hover:bg-slate-800 border border-slate-700/60 active:scale-95 text-indigo-400 font-bold py-2 rounded flex items-center justify-center gap-2 text-xs uppercase tracking-wider transition-all"
+          >
+            <span>Rotate ↻</span>
+          </button>
+          <button 
+            onClick={() => { if (!gameOver && !checkCollision(player, stage, { x: -1, y: 0 })) updatePlayerPos({ x: -1, y: 0 }); }}
+            className="bg-slate-900/80 hover:bg-slate-800 border border-slate-700/60 active:scale-95 text-white font-bold py-3 rounded flex items-center justify-center text-sm transition-all"
+          >
+            ◀
+          </button>
+          <button 
+            onClick={() => { if (!gameOver) drop(); }}
+            className="bg-slate-900/80 hover:bg-slate-800 border border-slate-700/60 active:scale-95 text-emerald-400 font-bold py-3 rounded flex items-center justify-center text-sm transition-all"
+          >
+            ▼
+          </button>
+          <button 
+            onClick={() => { if (!gameOver && !checkCollision(player, stage, { x: 1, y: 0 })) updatePlayerPos({ x: 1, y: 0 }); }}
+            className="bg-slate-900/80 hover:bg-slate-800 border border-slate-700/60 active:scale-95 text-white font-bold py-3 rounded flex items-center justify-center text-sm transition-all"
+          >
+            ▶
+          </button>
         </div>
-        <p className="text-[9px] font-mono text-slate-600 uppercase tracking-widest font-bold">Manual_Override_Active</p>
+        <p className="text-[9px] font-mono text-slate-600 uppercase tracking-widest font-bold">Touch / Keyboard Control Active</p>
       </div>
     </div>
   );
