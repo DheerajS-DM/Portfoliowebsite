@@ -263,7 +263,7 @@ export default function Portfolio() {
             <div className="hidden lg:flex items-center gap-2 pl-4 border-l border-white/10">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               <span className="text-[11px] font-mono text-slate-400">
-                Quant, Compilers & Systems
+                Full-Stack & Software Engineering
               </span>
             </div>
           </div>
@@ -306,32 +306,32 @@ export default function Portfolio() {
             {/* Status Pill Badge */}
             <div className="inline-flex items-center gap-2.5 px-3 py-1 rounded-full bg-[#0a0e17] border border-cyan-500/25 text-cyan-400/90 text-[11px] font-mono mb-6 shadow-[0_0_15px_rgba(6,182,212,0.1)]">
               <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-              <span className="tracking-wide">SYS_STATUS: ONLINE // QUANT & SYSTEMS ARCHITECT</span>
+              <span className="tracking-wide">SYS_STATUS: ONLINE // FULL-STACK & SOFTWARE ENGINEER</span>
             </div>
 
             {/* Main Headline */}
             <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.1] mb-6">
-              <span className="text-slate-100 block">High-Performance Systems,</span>
+              <span className="text-slate-100 block">Building Scalable Web Apps,</span>
               <span className="bg-gradient-to-r from-slate-100 via-cyan-300/90 to-indigo-300 bg-clip-text text-transparent block">
-                AST Compilers & Quant Engines
+                Full-Stack Systems & AI Tools
               </span>
             </h1>
 
             {/* Subheadline / Intro Text */}
             <p className="max-w-3xl text-sm sm:text-base text-slate-400 leading-relaxed font-normal mb-8">
-              Engineering microsecond DFA security engines, JIT C-transpilers, neuro-symbolic proof verifiers, and event-driven distributed infrastructure. Specialized in low-level POSIX systems, AST compilation, and quantitative financial modeling.
+              Software engineer passionate about building high-performance web applications, intelligent automation, cloud services, and developer tooling. Experienced across frontend engineering, backend services, AI integrations, and interactive software.
             </p>
 
             {/* Quick Metrics Grid */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3.5 w-full max-w-4xl mb-10">
               <div className="bg-[#090d16]/80 border border-white/[0.07] p-4 rounded-xl backdrop-blur-md">
                 <div className="text-xl sm:text-2xl font-black font-mono text-cyan-400">18</div>
-                <div className="text-[11px] font-mono text-slate-400 uppercase tracking-wider mt-0.5">Ranked Projects</div>
+                <div className="text-[11px] font-mono text-slate-400 uppercase tracking-wider mt-0.5">Production Projects</div>
               </div>
 
               <div className="bg-[#090d16]/80 border border-white/[0.07] p-4 rounded-xl backdrop-blur-md">
-                <div className="text-xl sm:text-2xl font-black font-mono text-emerald-400">&lt;1µs</div>
-                <div className="text-[11px] font-mono text-slate-400 uppercase tracking-wider mt-0.5">DFA Defense Latency</div>
+                <div className="text-xl sm:text-2xl font-black font-mono text-emerald-400">Full-Stack</div>
+                <div className="text-[11px] font-mono text-slate-400 uppercase tracking-wider mt-0.5">Web, Cloud & AI</div>
               </div>
 
               <div className="bg-[#090d16]/80 border border-white/[0.07] p-4 rounded-xl backdrop-blur-md">
@@ -386,7 +386,7 @@ export default function Portfolio() {
                   <div className="w-3 h-3 rounded-full bg-emerald-500/70" />
                   <span className="text-[11px] font-mono text-cyan-400/90 tracking-wider ml-2 font-bold">dheeraj_engineer.sh</span>
                 </div>
-                <span className="text-[10px] font-mono text-slate-500">v3.2 // Systems & Quant Profile</span>
+                <span className="text-[10px] font-mono text-slate-500">v3.2 // Software Engineer Profile</span>
               </div>
 
               {/* Terminal Content */}
@@ -395,7 +395,7 @@ export default function Portfolio() {
                   <span className="text-cyan-400">➜</span>
                   <span className="text-slate-500">~</span>
                   <span className="text-slate-200">
-                    Software Engineer specializing in quantitative algorithms, AST compilers, formal security verification, and high-concurrency systems.
+                    Software Engineer building full-stack web applications, intelligent AI pipelines, scalable cloud services, and high-performance software.
                   </span>
                 </div>
 
@@ -406,7 +406,7 @@ export default function Portfolio() {
                   </div>
                   <div>
                     <span className="text-indigo-400 font-bold block mb-0.5">CORE SPECS</span>
-                    <span className="text-slate-400">C/C++, Rust, Python, Formal DFA, AST, JIT</span>
+                    <span className="text-slate-400">React, Next.js, Node, Python, Rust, C/C++</span>
                   </div>
                   <div>
                     <span className="text-emerald-400 font-bold block mb-0.5">CONTACT & LINKS</span>
