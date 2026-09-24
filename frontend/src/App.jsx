@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import Tetris from './tetris.jsx';
+import ConstellationBackground from './components/ConstellationBackground.jsx';
 
 const projects = [
   {
@@ -225,244 +226,378 @@ export default function Portfolio() {
     });
   }, [selectedCategory, searchQuery]);
 
-  return (
-    <div className="h-screen w-full overflow-hidden font-sans relative bg-slate-950 text-slate-100">
-      
-      {/* Background Ambient Glows */}
-      <div className="absolute top-[-10%] left-[-10%] w-[45%] h-[45%] bg-indigo-600/10 blur-[130px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-[45%] h-[45%] bg-emerald-600/10 blur-[130px] rounded-full pointer-events-none" />
-      <div className="absolute top-[40%] right-[20%] w-[30%] h-[30%] bg-cyan-600/5 blur-[120px] rounded-full pointer-events-none" />
+  const scrollToSection = (id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
-      {/* MAIN PORTFOLIO SECTION */}
+  return (
+    <div className="h-screen w-full overflow-hidden font-sans relative bg-black text-slate-100 selection:bg-cyan-500/20 selection:text-cyan-300">
+      
+      {/* Dynamic Constellation Background Canvas */}
+      <ConstellationBackground />
+
+      {/* Dimmed Ambient Glow Accents */}
+      <div className="fixed top-[-10%] left-[-10%] w-[40%] h-[40%] bg-cyan-500/5 blur-[150px] rounded-full pointer-events-none z-0" />
+      <div className="fixed bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-indigo-500/5 blur-[150px] rounded-full pointer-events-none z-0" />
+
+      {/* MAIN CONTAINER */}
       <div 
-        className={`absolute top-0 left-0 h-full overflow-y-auto p-6 sm:p-10 lg:p-14 transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] ${
+        className={`absolute top-0 left-0 h-full overflow-y-auto transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] z-10 ${
           isTetrisOpen ? 'w-full lg:w-[68%]' : 'w-full'
         }`}
       >
-        {/* HEADER SECTION */}
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-10 gap-6 relative z-10">
-          <div>
-            <div className="flex items-center gap-3 mb-2">
-              <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight bg-gradient-to-r from-cyan-400 via-indigo-400 to-emerald-400 bg-clip-text text-transparent">
+        {/* STICKY TOP NAVBAR */}
+        <header className="sticky top-0 z-40 w-full bg-black/60 backdrop-blur-xl border-b border-white/[0.06] px-6 sm:px-12 py-3.5 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <a href="#hero" className="flex items-center gap-2 group cursor-pointer">
+              <span className="w-8 h-8 rounded-lg bg-[#0e1320] border border-cyan-500/30 flex items-center justify-center font-mono font-black text-xs text-cyan-400 group-hover:border-cyan-400 group-hover:shadow-[0_0_12px_rgba(6,182,212,0.3)] transition-all">
+                DS
+              </span>
+              <span className="font-mono text-xs font-bold text-slate-200 tracking-wider hidden sm:inline-block">
                 Dheeraj Sutram
-              </h1>
-              <span className="hidden sm:inline-block px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-cyan-950/80 text-cyan-400 border border-cyan-500/30">
-                18 Ranked Projects
+              </span>
+            </a>
+            <div className="hidden lg:flex items-center gap-2 pl-4 border-l border-white/10">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="text-[11px] font-mono text-slate-400">
+                Quant, Compilers & Systems
               </span>
             </div>
-            <p className="text-cyan-400 font-mono text-xs sm:text-sm tracking-wider uppercase font-semibold flex flex-wrap items-center gap-x-3 gap-y-1">
-              <span>dheeraj22may@gmail.com</span>
-              <span className="text-slate-600">•</span>
-              <span>+91 9360229114</span>
-              <span className="text-slate-600">•</span>
-              <a 
-                href="https://github.com/DheerajS-DM" 
-                target="_blank" 
-                rel="noreferrer" 
-                className="text-indigo-400 hover:text-indigo-300 underline underline-offset-4"
-              >
-                github.com/DheerajS-DM
-              </a>
+          </div>
+
+          <nav className="flex items-center gap-3 sm:gap-6 text-xs font-mono">
+            <button 
+              onClick={() => scrollToSection('hero')}
+              className="text-slate-400 hover:text-cyan-300 transition-colors cursor-pointer hidden md:inline-block"
+            >
+              // 01. Hero
+            </button>
+            <button 
+              onClick={() => scrollToSection('about')}
+              className="text-slate-400 hover:text-cyan-300 transition-colors cursor-pointer hidden md:inline-block"
+            >
+              // 02. About
+            </button>
+            <button 
+              onClick={() => scrollToSection('projects')}
+              className="text-slate-400 hover:text-cyan-300 transition-colors cursor-pointer"
+            >
+              // 03. Projects ({projects.length})
+            </button>
+            
+            <button 
+              onClick={() => setIsTetrisOpen(!isTetrisOpen)}
+              className="relative px-3.5 py-1.5 rounded-md text-xs font-mono font-bold bg-[#0c101a] border border-cyan-500/30 hover:border-cyan-400 text-cyan-300 hover:text-white transition-all shadow-[0_0_15px_rgba(6,182,212,0.12)] hover:shadow-[0_0_20px_rgba(6,182,212,0.25)] flex items-center gap-2 cursor-pointer"
+            >
+              <span>{isTetrisOpen ? "Close Arcade" : "Tetris Arcade"}</span>
+              <span className={`w-2 h-2 rounded-full ${isTetrisOpen ? 'bg-rose-500 animate-pulse' : 'bg-emerald-400'}`} />
+            </button>
+          </nav>
+        </header>
+
+        <div className="px-6 sm:px-12 lg:px-16 pt-8 pb-20 max-w-7xl mx-auto space-y-16">
+
+          {/* HERO SECTION */}
+          <section id="hero" className="pt-6 sm:pt-12 pb-6 flex flex-col items-start relative z-10">
+            
+            {/* Status Pill Badge */}
+            <div className="inline-flex items-center gap-2.5 px-3 py-1 rounded-full bg-[#0a0e17] border border-cyan-500/25 text-cyan-400/90 text-[11px] font-mono mb-6 shadow-[0_0_15px_rgba(6,182,212,0.1)]">
+              <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+              <span className="tracking-wide">SYS_STATUS: ONLINE // QUANT & SYSTEMS ARCHITECT</span>
+            </div>
+
+            {/* Main Headline */}
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.1] mb-6">
+              <span className="text-slate-100 block">High-Performance Systems,</span>
+              <span className="bg-gradient-to-r from-slate-100 via-cyan-300/90 to-indigo-300 bg-clip-text text-transparent block">
+                AST Compilers & Quant Engines
+              </span>
+            </h1>
+
+            {/* Subheadline / Intro Text */}
+            <p className="max-w-3xl text-sm sm:text-base text-slate-400 leading-relaxed font-normal mb-8">
+              Engineering microsecond DFA security engines, JIT C-transpilers, neuro-symbolic proof verifiers, and event-driven distributed infrastructure. Specialized in low-level POSIX systems, AST compilation, and quantitative financial modeling.
             </p>
-          </div>
-          
-          <button 
-            className="group relative bg-slate-900 border border-cyan-500/40 hover:border-cyan-400 px-5 py-2.5 rounded-lg text-xs font-mono font-bold transition-all shadow-[0_0_15px_rgba(6,182,212,0.15)] hover:shadow-[0_0_20px_rgba(6,182,212,0.35)] flex items-center gap-2.5 shrink-0 cursor-pointer"
-            onClick={() => setIsTetrisOpen(!isTetrisOpen)}
-          >
-            <span className="text-cyan-300 font-bold">{isTetrisOpen ? "Close Arcade" : "Play Tetris Arcade"}</span>
-            <div className={`w-2.5 h-2.5 rounded-full ${isTetrisOpen ? 'bg-rose-500 animate-pulse' : 'bg-emerald-400'}`} />
-          </button>
-        </div>
 
-        {/* BIO SECTION (TERMINAL STYLE) */}
-        <div className="max-w-4xl mb-10 relative z-10">
-          <div className="bg-slate-900/80 border border-slate-800 rounded-xl overflow-hidden shadow-[0_0_30px_rgba(0,0,0,0.5)]">
-            <div className="bg-slate-950 px-4 py-2.5 flex items-center justify-between border-b border-slate-800">
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full bg-rose-500/80" />
-                <div className="w-3 h-3 rounded-full bg-amber-500/80" />
-                <div className="w-3 h-3 rounded-full bg-emerald-500/80" />
-                <span className="text-[11px] font-mono text-cyan-400 tracking-wider ml-2 font-bold">dheeraj_engineer.sh</span>
+            {/* Quick Metrics Grid */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3.5 w-full max-w-4xl mb-10">
+              <div className="bg-[#090d16]/80 border border-white/[0.07] p-4 rounded-xl backdrop-blur-md">
+                <div className="text-xl sm:text-2xl font-black font-mono text-cyan-400">18</div>
+                <div className="text-[11px] font-mono text-slate-400 uppercase tracking-wider mt-0.5">Ranked Projects</div>
               </div>
-              <span className="text-[10px] font-mono text-slate-500">v3.0 // Ranked Portfolio Catalog</span>
-            </div>
-            <div className="p-6 font-mono text-xs sm:text-sm leading-relaxed">
-              <p className="text-emerald-400 mb-4 font-semibold">
-                <span className="text-cyan-400">➜</span> <span className="text-slate-400">~</span> <span className="text-slate-200">Software Engineer specializing in quantitative algorithms, AST compilers, formal security verification, and high-concurrency systems.</span>
-              </p>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-y-2.5 gap-x-6 text-xs border-t border-slate-800/80 pt-4">
-                <p><span className="text-cyan-400 font-bold">EDUCATION:</span> <span className="text-slate-200">BE IT @ VIT (2028)</span></p>
-                <p><span className="text-purple-400 font-bold">CORE DOMAIN:</span> <span className="text-slate-200">Quant, Compilers & Systems</span></p>
-                <p><span className="text-emerald-400 font-bold">STATUS:</span> <span className="text-slate-200">Building High-Performance Infra</span></p>
+
+              <div className="bg-[#090d16]/80 border border-white/[0.07] p-4 rounded-xl backdrop-blur-md">
+                <div className="text-xl sm:text-2xl font-black font-mono text-emerald-400">&lt;1µs</div>
+                <div className="text-[11px] font-mono text-slate-400 uppercase tracking-wider mt-0.5">DFA Defense Latency</div>
+              </div>
+
+              <div className="bg-[#090d16]/80 border border-white/[0.07] p-4 rounded-xl backdrop-blur-md">
+                <div className="text-xl sm:text-2xl font-black font-mono text-amber-300">Patent</div>
+                <div className="text-[11px] font-mono text-slate-400 uppercase tracking-wider mt-0.5">R-IPR0003006P (UCSD)</div>
+              </div>
+
+              <div className="bg-[#090d16]/80 border border-white/[0.07] p-4 rounded-xl backdrop-blur-md">
+                <div className="text-xl sm:text-2xl font-black font-mono text-indigo-300">VIT '28</div>
+                <div className="text-[11px] font-mono text-slate-400 uppercase tracking-wider mt-0.5">Information Tech</div>
               </div>
             </div>
-          </div>
-        </div>
 
-        {/* SEARCH & CATEGORY FILTER SECTION */}
-        <div className="mb-8 relative z-10 space-y-4">
-          <div className="flex flex-col md:flex-row gap-4 items-stretch md:items-center justify-between">
-            {/* Category Filter Pills */}
-            <div className="flex flex-wrap gap-2">
-              {categories.map(cat => (
-                <button
-                  key={cat}
-                  onClick={() => setSelectedCategory(cat)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-mono font-semibold transition-all cursor-pointer ${
-                    selectedCategory === cat
-                      ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-400/60 shadow-[0_0_12px_rgba(6,182,212,0.25)]'
-                      : 'bg-slate-900/80 text-slate-400 border border-slate-800 hover:border-slate-700 hover:text-slate-200'
-                  }`}
-                >
-                  {cat}
-                  {cat === "All" && ` (${projects.length})`}
-                </button>
-              ))}
-            </div>
-
-            {/* Live Search Bar */}
-            <div className="relative min-w-[240px] max-w-sm">
-              <input
-                type="text"
-                placeholder="Search projects, tags, tech..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-slate-900/90 border border-slate-800 focus:border-cyan-400/70 rounded-lg px-3.5 py-1.5 text-xs font-mono text-slate-200 placeholder-slate-500 focus:outline-none transition-all shadow-inner"
-              />
-              {searchQuery && (
-                <button
-                  onClick={() => setSearchQuery('')}
-                  className="absolute right-2.5 top-1.5 text-slate-500 hover:text-slate-300 text-xs"
-                >
-                  ✕
-                </button>
-              )}
-            </div>
-          </div>
-
-          <div className="flex items-center justify-between text-xs font-mono text-slate-400 px-1">
-            <span className="flex items-center gap-2">
-              <span className="text-emerald-400">//</span> Ranked Catalog: Best → Lowest Complexity
-            </span>
-            <span>
-              Showing {filteredProjects.length} of {projects.length} Projects
-            </span>
-          </div>
-        </div>
-
-        {/* PROJECTS GRID */}
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 relative z-10 pb-24">
-          {filteredProjects.map((proj) => {
-            const isTop3 = proj.rank <= 3;
-            return (
-              <div 
-                key={proj.rank} 
-                className="group bg-slate-900/60 hover:bg-slate-900/90 p-6 rounded-xl border border-slate-800 hover:border-cyan-500/50 transition-all duration-300 flex flex-col justify-between hover:shadow-[0_0_30px_rgba(6,182,212,0.14)] relative overflow-hidden"
+            {/* Hero CTA Buttons */}
+            <div className="flex flex-wrap items-center gap-4">
+              <button
+                onClick={() => scrollToSection('projects')}
+                className="px-6 py-3 rounded-lg text-xs font-mono font-bold bg-cyan-950/60 hover:bg-cyan-900/80 border border-cyan-500/40 text-cyan-300 hover:text-white transition-all shadow-[0_0_20px_rgba(6,182,212,0.15)] flex items-center gap-2 cursor-pointer"
               >
-                {/* Visual Rank Accent Stripe */}
-                <div 
-                  className={`absolute top-0 left-0 w-1.5 h-full ${
-                    isTop3 
-                      ? 'bg-gradient-to-b from-amber-400 via-cyan-400 to-emerald-400 shadow-[0_0_10px_rgba(251,191,36,0.5)]' 
-                      : 'bg-gradient-to-b from-cyan-500 via-indigo-500 to-emerald-500 opacity-70 group-hover:opacity-100'
-                  } transition-opacity`} 
-                />
+                <span>Explore Catalog</span>
+                <span className="text-sm">↓</span>
+              </button>
 
-                <div className="pl-2.5">
-                  {/* Rank Badge & Domain Header */}
-                  <div className="flex items-center justify-between mb-3 gap-2">
-                    <div className="flex items-center gap-2">
-                      <span className={`text-[11px] font-mono font-extrabold px-2.5 py-0.5 rounded ${
-                        isTop3
-                          ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40 shadow-[0_0_10px_rgba(245,158,11,0.2)]'
-                          : 'bg-slate-800 text-cyan-400 border border-cyan-500/30'
-                      }`}>
-                        RANK #{proj.rank < 10 ? `0${proj.rank}` : proj.rank}
-                      </span>
-                      {proj.highlight && (
-                        <span className="text-[10px] font-mono font-medium text-emerald-400 bg-emerald-950/60 border border-emerald-500/30 px-2 py-0.5 rounded">
-                          {proj.highlight}
+              <button
+                onClick={() => setIsTetrisOpen(true)}
+                className="px-6 py-3 rounded-lg text-xs font-mono font-bold bg-[#0a0d16] hover:bg-[#111624] border border-white/10 text-slate-300 hover:text-white transition-all flex items-center gap-2 cursor-pointer"
+              >
+                <span>Play Tetris Arcade</span>
+                <span className="text-sm">🎮</span>
+              </button>
+
+              <a
+                href="https://github.com/DheerajS-DM"
+                target="_blank"
+                rel="noreferrer"
+                className="px-5 py-3 rounded-lg text-xs font-mono text-slate-400 hover:text-cyan-300 transition-colors flex items-center gap-1.5"
+              >
+                <span>GitHub Profile</span>
+                <span>↗</span>
+              </a>
+            </div>
+          </section>
+
+          {/* BIO SECTION (TERMINAL STYLE - DIMMED PITCH BLACK) */}
+          <section id="about" className="relative z-10 pt-4">
+            <div className="bg-[#06080e]/90 border border-white/[0.08] rounded-xl overflow-hidden shadow-[0_0_40px_rgba(0,0,0,0.9)] backdrop-blur-xl">
+              {/* Window Bar */}
+              <div className="bg-[#030408] px-4 py-2.5 flex items-center justify-between border-b border-white/[0.08]">
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 rounded-full bg-rose-500/70" />
+                  <div className="w-3 h-3 rounded-full bg-amber-500/70" />
+                  <div className="w-3 h-3 rounded-full bg-emerald-500/70" />
+                  <span className="text-[11px] font-mono text-cyan-400/90 tracking-wider ml-2 font-bold">dheeraj_engineer.sh</span>
+                </div>
+                <span className="text-[10px] font-mono text-slate-500">v3.2 // Systems & Quant Profile</span>
+              </div>
+
+              {/* Terminal Content */}
+              <div className="p-6 font-mono text-xs sm:text-sm leading-relaxed space-y-4">
+                <div className="flex items-start gap-2 text-emerald-400/90">
+                  <span className="text-cyan-400">➜</span>
+                  <span className="text-slate-500">~</span>
+                  <span className="text-slate-200">
+                    Software Engineer specializing in quantitative algorithms, AST compilers, formal security verification, and high-concurrency systems.
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-y-3 gap-x-6 text-xs border-t border-white/[0.06] pt-4 text-slate-300">
+                  <div>
+                    <span className="text-cyan-400 font-bold block mb-0.5">EDUCATION & AFFILIATION</span>
+                    <span className="text-slate-400">BE Information Tech @ VIT (2024 - 2028)</span>
+                  </div>
+                  <div>
+                    <span className="text-indigo-400 font-bold block mb-0.5">CORE SPECS</span>
+                    <span className="text-slate-400">C/C++, Rust, Python, Formal DFA, AST, JIT</span>
+                  </div>
+                  <div>
+                    <span className="text-emerald-400 font-bold block mb-0.5">CONTACT & LINKS</span>
+                    <span className="text-slate-400 block">dheeraj22may@gmail.com</span>
+                    <span className="text-slate-400 block">+91 9360229114</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* SEARCH & CATEGORY FILTER SECTION */}
+          <section id="projects" className="relative z-10 space-y-5 pt-4">
+            <div className="flex flex-col md:flex-row gap-4 items-stretch md:items-center justify-between bg-[#06080e]/80 border border-white/[0.07] p-4 rounded-xl backdrop-blur-xl">
+              {/* Category Filter Pills */}
+              <div className="flex flex-wrap gap-2">
+                {categories.map(cat => (
+                  <button
+                    key={cat}
+                    onClick={() => setSelectedCategory(cat)}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-mono font-semibold transition-all cursor-pointer ${
+                      selectedCategory === cat
+                        ? 'bg-cyan-950/60 text-cyan-300 border border-cyan-500/40 shadow-[0_0_12px_rgba(6,182,212,0.2)]'
+                        : 'bg-black/40 text-slate-400 border border-white/[0.06] hover:border-slate-700 hover:text-slate-200'
+                    }`}
+                  >
+                    {cat}
+                    {cat === "All" && ` (${projects.length})`}
+                  </button>
+                ))}
+              </div>
+
+              {/* Live Search Bar */}
+              <div className="relative min-w-[240px] max-w-sm">
+                <input
+                  type="text"
+                  placeholder="Filter by keyword, tech, domain..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full bg-black/60 border border-white/10 focus:border-cyan-500/60 rounded-lg px-3.5 py-1.5 text-xs font-mono text-slate-200 placeholder-slate-500 focus:outline-none transition-all shadow-inner"
+                />
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery('')}
+                    className="absolute right-2.5 top-1.5 text-slate-500 hover:text-slate-300 text-xs"
+                  >
+                    ✕
+                  </button>
+                )}
+              </div>
+            </div>
+
+            <div className="flex items-center justify-between text-xs font-mono text-slate-400 px-1">
+              <span className="flex items-center gap-2">
+                <span className="text-cyan-400">//</span> Ranked Engineering Catalog: Complexity Order
+              </span>
+              <span>
+                Showing {filteredProjects.length} of {projects.length} Systems
+              </span>
+            </div>
+
+            {/* PROJECTS GRID (PITCH BLACK DARK GLASS CARDS) */}
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 pb-12">
+              {filteredProjects.map((proj) => {
+                const isTop3 = proj.rank <= 3;
+                return (
+                  <div 
+                    key={proj.rank} 
+                    className="group bg-[#07090f]/70 hover:bg-[#0b0f19]/90 p-6 rounded-xl border border-white/[0.07] hover:border-cyan-500/35 transition-all duration-300 flex flex-col justify-between shadow-[0_4px_25px_rgba(0,0,0,0.7)] hover:shadow-[0_10px_35px_rgba(6,182,212,0.12)] relative overflow-hidden backdrop-blur-md"
+                  >
+                    {/* Rank Accent Line */}
+                    <div 
+                      className={`absolute top-0 left-0 w-1 h-full ${
+                        isTop3 
+                          ? 'bg-gradient-to-b from-amber-400/90 via-cyan-400/80 to-indigo-400/70 shadow-[0_0_8px_rgba(251,191,36,0.3)]' 
+                          : 'bg-gradient-to-b from-cyan-500/50 via-indigo-500/30 to-slate-700/30 opacity-60 group-hover:opacity-100'
+                      } transition-opacity`} 
+                    />
+
+                    <div className="pl-2">
+                      {/* Rank Badge & Domain Header */}
+                      <div className="flex items-center justify-between mb-3 gap-2">
+                        <div className="flex items-center gap-2">
+                          <span className={`text-[10px] font-mono font-extrabold px-2.5 py-0.5 rounded ${
+                            isTop3
+                              ? 'bg-amber-500/10 text-amber-300 border border-amber-500/30'
+                              : 'bg-black/60 text-cyan-400/90 border border-cyan-500/20'
+                          }`}>
+                            RANK #{proj.rank < 10 ? `0${proj.rank}` : proj.rank}
+                          </span>
+                          {proj.highlight && (
+                            <span className="text-[10px] font-mono font-medium text-emerald-400/90 bg-emerald-950/40 border border-emerald-500/20 px-2 py-0.5 rounded">
+                              {proj.highlight}
+                            </span>
+                          )}
+                        </div>
+                        <span className="text-[10px] font-mono text-slate-400 truncate max-w-[180px]">
+                          {proj.category}
+                        </span>
+                      </div>
+
+                      {/* Title & Domain */}
+                      <h2 className="text-base sm:text-lg font-bold mb-1 text-slate-100 group-hover:text-cyan-300 transition-colors leading-snug">
+                        {proj.name}
+                      </h2>
+                      <p className="text-[11px] font-mono text-cyan-500/80 mb-3 font-semibold">
+                        {proj.domain}
+                      </p>
+
+                      {/* Description */}
+                      <p className="text-slate-300/90 text-xs leading-relaxed mb-4 font-normal">
+                        {proj.description}
+                      </p>
+
+                      {/* Tags */}
+                      <div className="flex flex-wrap gap-1.5 mb-2">
+                        {proj.tags?.map(tag => (
+                          <span 
+                            key={tag} 
+                            className="text-[10px] font-mono text-slate-300 bg-black/50 border border-white/[0.08] px-2 py-0.5 rounded tracking-wide"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    
+                    {/* Actions & Links */}
+                    <div className="flex items-center justify-between border-t border-white/[0.06] pt-3.5 mt-3 text-xs font-mono pl-2">
+                      <div className="flex items-center gap-4">
+                        <a 
+                          href={proj.github} 
+                          target="_blank" 
+                          rel="noreferrer" 
+                          className="text-cyan-400/90 hover:text-cyan-300 font-bold transition-colors inline-flex items-center gap-1"
+                        >
+                          Source Code ↗
+                        </a>
+                        {proj.live && proj.live !== "#" && (
+                          <a 
+                            href={proj.live} 
+                            target="_blank" 
+                            rel="noreferrer" 
+                            className="text-emerald-400/90 hover:text-emerald-300 font-bold transition-colors inline-flex items-center gap-1"
+                          >
+                            Live Platform ↗
+                          </a>
+                        )}
+                      </div>
+                      
+                      {proj.noLive ? (
+                        <span className="text-slate-500 text-[10px] font-medium hidden sm:inline-block">
+                          // Systems Engine
+                        </span>
+                      ) : (
+                        <span className="text-emerald-400/80 text-[10px] font-medium hidden sm:inline-block">
+                          ● Deployed
                         </span>
                       )}
                     </div>
-                    <span className="text-[10px] font-mono text-slate-400 truncate max-w-[180px]">
-                      {proj.category}
-                    </span>
                   </div>
+                );
+              })}
+            </div>
+          </section>
 
-                  {/* Title & Domain */}
-                  <h2 className="text-lg sm:text-xl font-bold mb-1.5 text-white group-hover:text-cyan-300 transition-colors leading-snug">
-                    {proj.name}
-                  </h2>
-                  <p className="text-[11px] font-mono text-cyan-500/90 mb-3 font-semibold">
-                    {proj.domain}
-                  </p>
-
-                  {/* Description */}
-                  <p className="text-slate-300 text-xs leading-relaxed mb-5 font-normal">
-                    {proj.description}
-                  </p>
-
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-1.5 mb-2">
-                    {proj.tags?.map(tag => (
-                      <span 
-                        key={tag} 
-                        className="text-[10px] font-mono font-bold text-cyan-300 bg-cyan-950/50 border border-cyan-500/25 px-2 py-0.5 rounded uppercase tracking-wider"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                
-                {/* Actions & Links */}
-                <div className="flex items-center justify-between border-t border-slate-800/80 pt-4 mt-2 text-xs font-mono pl-2.5">
-                  <div className="flex items-center gap-4">
-                    <a 
-                      href={proj.github} 
-                      target="_blank" 
-                      rel="noreferrer" 
-                      className="text-cyan-400 hover:text-cyan-300 font-bold transition-colors inline-flex items-center gap-1"
-                    >
-                      Source Code ↗
-                    </a>
-                    {proj.live && proj.live !== "#" && (
-                      <a 
-                        href={proj.live} 
-                        target="_blank" 
-                        rel="noreferrer" 
-                        className="text-emerald-400 hover:text-emerald-300 font-bold transition-colors inline-flex items-center gap-1"
-                      >
-                        Live Demo ↗
-                      </a>
-                    )}
-                  </div>
-                  
-                  {proj.noLive ? (
-                    <span className="text-slate-500 text-[10px] font-medium hidden sm:inline-block">
-                      // Core Logic & Engine
-                    </span>
-                  ) : (
-                    <span className="text-emerald-400/80 text-[10px] font-medium hidden sm:inline-block">
-                      ● Deployed
-                    </span>
-                  )}
-                </div>
-              </div>
-            );
-          })}
+          {/* FOOTER */}
+          <footer className="border-t border-white/[0.06] pt-8 pb-12 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-500">
+            <div>
+              © {new Date().getFullYear()} Dheeraj Sutram. Pitch-Black Constellation Theme.
+            </div>
+            <div className="flex items-center gap-4">
+              <a href="https://github.com/DheerajS-DM" target="_blank" rel="noreferrer" className="hover:text-cyan-400 transition-colors">
+                GitHub
+              </a>
+              <span>•</span>
+              <a href="mailto:dheeraj22may@gmail.com" className="hover:text-cyan-400 transition-colors">
+                Email
+              </a>
+            </div>
+          </footer>
         </div>
       </div>
 
-      {/* TETRIS SIDEBAR */}
+      {/* TETRIS SIDEBAR DRAWER (PITCH BLACK THEME) */}
       <div 
         className={`
-          absolute top-0 right-0 h-full bg-slate-950/90 backdrop-blur-xl z-50
+          absolute top-0 right-0 h-full bg-black/95 backdrop-blur-2xl z-50
           transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] flex flex-col overflow-hidden
           w-[85%] sm:w-[450px] lg:w-[32%] border-l border-white/10
-          ${isTetrisOpen ? 'translate-x-0 shadow-[-50px_0_100px_rgba(0,0,0,0.6)]' : 'translate-x-full'}
+          ${isTetrisOpen ? 'translate-x-0 shadow-[-50px_0_100px_rgba(0,0,0,0.9)]' : 'translate-x-full'}
         `}
       >
         <Tetris />
@@ -471,7 +606,7 @@ export default function Portfolio() {
       {/* MOBILE OVERLAY */}
       {isTetrisOpen && (
         <div 
-          className="fixed inset-0 bg-slate-950/60 z-40 lg:hidden backdrop-blur-sm transition-opacity duration-700"
+          className="fixed inset-0 bg-black/70 z-40 lg:hidden backdrop-blur-sm transition-opacity duration-700"
           onClick={() => setIsTetrisOpen(false)}
         />
       )}
