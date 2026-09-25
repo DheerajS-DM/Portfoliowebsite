@@ -46,7 +46,7 @@ export default function ConstellationBackground() {
       particles = [];
       // Scale particle count with screen area, clamped
       const particleCount = Math.min(Math.floor((width * height) / 12000), 120);
-      
+
       const colors = [
         { r: 56, g: 189, b: 248 },  // muted cyan
         { r: 129, g: 140, b: 248 }, // muted indigo

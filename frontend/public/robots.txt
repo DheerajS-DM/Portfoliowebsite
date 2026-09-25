@@ -1,0 +1,33 @@
+# Allow all search engine and AI crawlers
+User-agent: *
+Allow: /
+
+# Explicitly allow AI answer engine bots
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Anthropic-AI
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Cohere-ai
+Allow: /
+
+Sitemap: https://portfoliowebsite-puce-seven.vercel.app/sitemap.xml

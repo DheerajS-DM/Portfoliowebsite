@@ -244,7 +244,7 @@ export default function Portfolio() {
       <div className="fixed bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-indigo-500/5 blur-[150px] rounded-full pointer-events-none z-0" />
 
       {/* MAIN CONTAINER */}
-      <div 
+      <main 
         className={`absolute top-0 left-0 h-full overflow-y-auto transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] z-10 ${
           isTetrisOpen ? 'w-full lg:w-[68%]' : 'w-full'
         }`}
@@ -473,7 +473,7 @@ export default function Portfolio() {
               {filteredProjects.map((proj) => {
                 const isTop3 = proj.rank <= 3;
                 return (
-                  <div 
+                  <article 
                     key={proj.rank} 
                     className="group bg-[#07090f]/70 hover:bg-[#0b0f19]/90 p-6 rounded-xl border border-white/[0.07] hover:border-cyan-500/35 transition-all duration-300 flex flex-col justify-between shadow-[0_4px_25px_rgba(0,0,0,0.7)] hover:shadow-[0_10px_35px_rgba(6,182,212,0.12)] relative overflow-hidden backdrop-blur-md"
                   >
@@ -567,7 +567,7 @@ export default function Portfolio() {
                         </span>
                       )}
                     </div>
-                  </div>
+                  </article>
                 );
               })}
             </div>
@@ -589,7 +589,7 @@ export default function Portfolio() {
             </div>
           </footer>
         </div>
-      </div>
+      </main>
 
       {/* TETRIS SIDEBAR DRAWER (PITCH BLACK THEME) */}
       <div 
